@@ -1,6 +1,6 @@
 # Project_3-Squirrel_Census
 
-<h2>Project outline<h2>
+## Project outline
 
 ## Purpose
 To understand the type of squirrels in NYC Central Park, their behaviour at the time of spotting, and where they were found in the park.
