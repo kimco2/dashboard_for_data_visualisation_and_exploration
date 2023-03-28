@@ -2,7 +2,7 @@
 
 ## Project outline
 
-### Purpose
+## Purpose
 To understand the type of squirrels in NYC Central Park, their behaviour at the time of spotting, and where they were found in the park.
 
 ## Data source
