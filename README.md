@@ -16,7 +16,7 @@ https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squi
 - Where the squirrels were spotted (on the ground or up a tree)
 - Whether they were foraging or eating when they were spotted
 - Where abouts in the park the squirrels were found using latitude and longitude
-    - Potential filters I’m thinking about are time of sighting(AM/PM), ground/tree, adult/juvenile.
+    - Potential filters I’m thinking about are time of sighting(AM/PM), squirrel location (ground/tree), age (adult/juvenile).
 
 ## High level overview
 1. Data is available via CSV
