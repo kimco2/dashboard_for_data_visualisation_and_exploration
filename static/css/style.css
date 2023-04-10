@@ -1,0 +1,18 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map
+{
+  height: 600px;
+}
+
+
+.jumbotron{
+    background-color:#85c7de;
+    text-align:center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+

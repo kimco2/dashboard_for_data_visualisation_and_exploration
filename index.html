@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Squirrels</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <!-- D3 library -->
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin=""/>
+
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+
+ <!-- Leaflet heatmap plugin-->
+ <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+
+  <!-- Marker cluster JavaScript code -->
+  <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+
+  <!-- Marker cluster CSS -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  
+  <!-- Plotly -->
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
+  <!-- Apex charts -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+      
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+       <div class="col-md-12 jumbotron text-center">
+        <h1 style="font-family:Helvetica; color:white; font-size:60px"> <strong>Squirrels in Central Park NY</strong></h1>
+        <h3 style="font-family:Helvetica; color:white; font-size:30px">Data from the the 2018 census</h3>
+               </div>
+  <!-- map -->
+  </div>
+   <div class="row">
+  <div class="col-md-10.5">
+  <div id="map">
+  </div>
+  </div>
+  <h2 style="font-family:Helvetica; color:#489fb5; font-size:30px"><strong>Summary statistics of the 3,023 squirrels</strong></h1>
+  </br>
+    <div class="row">
+    <div class="col-md-4">
+      <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Colour (%)</p>        
+      <div id="colour"></div>
+    </div>
+    <div class="col-md-4">
+      <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Age (%)</p>        
+      <div id="age"></div>
+    </div>
+    <div class="col-md-4">
+      <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Location (%)</p>        
+      <div id="location"></div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h2 style="font-family:Helvetica; color:#489fb5; font-size:30px"><strong>Squirrel activity on observation</strong></h1>
+  </br>
+  </div>
+<div class="row">
+  <div class="col-md-2">
+    <div class="well">
+      <h5>Time of sighting:</h5>
+      <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    </div>
+  <!-- </div> -->
+</div>
+</div>
+<div class="row">
+<div class="row">
+  <div class="col-md-4">
+    <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Eating (%)</p>        
+   <div id="eating"></div>
+  </div> 
+  <div class="col-md-4">
+    <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Movement (%)</p>        
+   <div id="activity"></div>
+  </div> 
+  <div class="col-md-4">
+    <p style="font-family:Helvetica; color:#489fb5; font-size:20px; text-align:center">Noises (%)</p>        
+   <div id="noises"></div>
+  </div> 
+</div>         
+         
+   
+          
+   
+  
+
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="static/js/logic.js"></script>
+  <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
+
+  </body>
+  </html>
