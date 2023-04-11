@@ -13,7 +13,7 @@
 - **js / logic.js** - the js code for the online dashboard
 - **js / leaflet-heat.js** - code required for the heatmaps used within the dashboard.
 
--Below is a link to **powerpoint presentation** saved in google drives
+-Below is a link to **powerpoint presentation** saved in google drive
 https://drive.google.com/drive/folders/1AGjcTW9gMSALSFRLJm04Taxz8fiJudHt?usp=sharing
 
 
