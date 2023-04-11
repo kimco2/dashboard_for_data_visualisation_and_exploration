@@ -1,23 +1,59 @@
 const coordinatesURL = "http://127.0.0.1:5000/api/v1.0/coordinates";
-const summaryStatsURL = "http://127.0.0.1:5000/api/v1.0/summary_stats";
+const summaryStatsURL = "http://127.0.0.1:5000/api/v1.0/about";
 const activityURL = "http://127.0.0.1:5000/api/v1.0/activity";
-const timeSightingURL = "http://127.0.0.1:5000/api/v1.0/time_sighting";
+const timeURL = "http://127.0.0.1:5000/api/v1.0/time";
 
 //-------------------------------------------------------------------------------
 // Create a heatmap based on squirrel location
 //-------------------------------------------------------------------------------
+// Adding the tile layer
+let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+
+let topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+  });
+
+let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+// Create basemaps
+let baseMaps = {
+  "Street Map": street,
+  "Topographic Map": topo,
+  "Satellite Map" : googleSat
+};
+
+let allSquirrels = new L.layerGroup(baseMaps);
+let am = new L.layerGroup(baseMaps);
+let pm = new L.layerGroup(baseMaps);
+let graySquirrels = new L.layerGroup(baseMaps);
+let cinnamonSquirrels = new L.layerGroup(baseMaps);
+let blackSquirrels = new L.layerGroup(baseMaps);
+
+// Define an object that contains the overlays
+let overlayMaps = {
+  'All squirrels': allSquirrels,
+  'Gray squirrels': graySquirrels,
+  'Cinnamon squirrels': cinnamonSquirrels,
+  'Black squirrels': blackSquirrels,
+  'Sighted AM': am,
+  'Sighted PM': pm
+  };
+
 // Setting the center and zoom for the map
 let myMap = L.map("map", {
   center: [40.7826, -73.9656],
-  zoom: 13.5
-});
+  zoom: 13.5,
+  layers: [street]
+  });
 
-// Adding the tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
+L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
-// Reading the url and obtaining the longitude and latitude data
+// All squirrels data - Reading the url and obtaining the longitude and latitude data
 d3.json(coordinatesURL).then(function(response) {
   let heatArray = [];
   for (let i = 0; i < response.length; i++) {
@@ -32,11 +68,127 @@ d3.json(coordinatesURL).then(function(response) {
     maxOpacity:0.5,
     minOpacity: 0,
     radius:10,
-    blur: 15
-  }).addTo(myMap);
+    blur: 10
+  }).addTo(allSquirrels);
+
+  allSquirrels.addTo(myMap);
 
 });
 
+// Squirrels sighted in the AM data - Reading the url and obtaining the longitude and latitude data
+d3.json(coordinatesURL).then(function(response) {
+  data = response.filter(object=>object.Shift=='AM');
+    let heatArray = [];
+    for (let i = 0; i < data.length; i++) {
+      if (response) {
+        heatArray.push([data[i].Y, data[i].X]);
+      }
+    }
+  
+    // Settings for the heat array
+    let heatAM = L.heatLayer(heatArray, {
+      scaleRadius: true,
+      maxOpacity:0.5,
+      minOpacity: 0,
+      radius:10,
+      blur: 10
+    }).addTo(am);
+  
+  // am.addTo(myMap);
+  
+  });
+
+  // Squirrels sighted in the PM data - Reading the url and obtaining the longitude and latitude data
+d3.json(coordinatesURL).then(function(response) {
+  data = response.filter(object=>object.Shift=='PM');
+    let heatArray = [];
+    for (let i = 0; i < data.length; i++) {
+      if (response) {
+        heatArray.push([data[i].Y, data[i].X]);
+      }
+    }
+  
+    // Settings for the heat array
+    let heatAM = L.heatLayer(heatArray, {
+      scaleRadius: true,
+      maxOpacity:0.5,
+      minOpacity: 0,
+      radius:10,
+      blur: 10
+    }).addTo(pm);
+  
+  // pm.addTo(myMap);
+  
+  });
+
+// Gray Squirrels data - Reading the url and obtaining the longitude and latitude data
+d3.json(coordinatesURL).then(function(response) {
+  data = response.filter(object=>object.Primary_Fur_Color=='Gray');
+    let heatArray = [];
+    for (let i = 0; i < data.length; i++) {
+      if (response) {
+        heatArray.push([data[i].Y, data[i].X]);
+      }
+    }
+  
+    // Settings for the heat array
+    let heatAM = L.heatLayer(heatArray, {
+      scaleRadius: true,
+      maxOpacity:0.5,
+      minOpacity: 0,
+      radius:10,
+      blur: 10
+    }).addTo(graySquirrels);
+  
+  // graySquirrels.addTo(myMap);
+  
+  });
+
+// Cinnamon Squirrels data - Reading the url and obtaining the longitude and latitude data
+d3.json(coordinatesURL).then(function(response) {
+  data = response.filter(object=>object.Primary_Fur_Color=='Cinnamon');
+    let heatArray = [];
+    for (let i = 0; i < data.length; i++) {
+      if (response) {
+        heatArray.push([data[i].Y, data[i].X]);
+      }
+    }
+  
+    // Settings for the heat array
+    let heatAM = L.heatLayer(heatArray, {
+      scaleRadius: true,
+      maxOpacity:0.5,
+      minOpacity: 0,
+      radius:10,
+      blur: 10
+    }).addTo(cinnamonSquirrels);
+  
+  // cinnamonSquirrels.addTo(myMap);
+  
+  });
+
+// Black Squirrels data - Reading the url and obtaining the longitude and latitude data
+d3.json(coordinatesURL).then(function(response) {
+  data = response.filter(object=>object.Primary_Fur_Color=='Black');
+    let heatArray = [];
+    for (let i = 0; i < data.length; i++) {
+      if (response) {
+        heatArray.push([data[i].Y, data[i].X]);
+      }
+    }
+  
+    // Settings for the heat array
+    let heatAM = L.heatLayer(heatArray, {
+      scaleRadius: true,
+      maxOpacity:0.5,
+      minOpacity: 0,
+      radius:10,
+      blur: 10
+    }).addTo(blackSquirrels);
+  
+  // blackSquirrels.addTo(myMap);
+  
+  });
 
 //---------------------------------------------------------------------------------
 // Build chart on squirrel colour
@@ -72,9 +224,9 @@ function buildColour(){
             };
             
             // Calcuate the percentage of squirrels that are each colour
-            let cinnamonPer  = Math.trunc((cinnamonCount/total)*100);
-            let grayPer  = Math.trunc((grayCount/total)*100);
-            let blackPer  = Math.trunc((blackCount/total)*100);
+            let cinnamonPer  = Math.round((cinnamonCount/total)*100);
+            let grayPer  = Math.round((grayCount/total)*100);
+            let blackPer  = Math.round((blackCount/total)*100);
   
             // Assign values and names to fields to use in the chart
             let names = ['Gray', 'Cinnamon', 'Black'];
@@ -180,9 +332,9 @@ function buildColour(){
             };
             
             // Calcualte the percentage of squirrels for each age
-            let adultPer  = Math.trunc((adultCount/total)*100);
-            let juvenilePer  = Math.trunc((juvenileCount/total)*100);
-            let nothingPer  = Math.trunc((notNotedCount/total)*100);
+            let adultPer  = Math.round((adultCount/total)*100);
+            let juvenilePer  = Math.round((juvenileCount/total)*100);
+            let nothingPer  = Math.round((notNotedCount/total)*100);
   
             // Assign values and names to fields to use in the chart
             let names = ['Adult', 'Juvenile'];
@@ -285,9 +437,9 @@ function buildColour(){
           };
 
           // Calcualte the percentage of squirrels for each location
-            let groundPer  = Math.trunc((groundCount/total)*100);
-            let aboveGroundPer  = Math.trunc((aboveGroundCount/total)*100);
-            let nothingPer  = Math.trunc((not_notedCount/total)*100);
+            let groundPer  = Math.round((groundCount/total)*100);
+            let aboveGroundPer  = Math.round((aboveGroundCount/total)*100);
+            let nothingPer  = Math.round((not_notedCount/total)*100);
   
             // Assign values and names to fields to use in the chart
             let names = ['Above ground', 'Ground'];
@@ -374,28 +526,28 @@ function buildActivity(when){
     // Counting them, then calcuate the percentage of squirrels running
     let runningData = data.filter(object => object.Running == 'TRUE');
     let runningTotal = runningData.length;
-    let runningPer = Math.trunc((runningTotal / total)*100);
+    let runningPer = Math.round((runningTotal / total)*100);
 
     // Filtering data to those squirrels who were seen chasing
     // Counting them, then calcuating the percentage of squirrels chasing
      let chasingData = data.filter(object => object.Chasing == 'TRUE');
      let chasingTotal = chasingData.length;
-     let chasingPer = Math.trunc((chasingTotal / total)*100);
+     let chasingPer = Math.round((chasingTotal / total)*100);
   
     // Filtering data to those squirrels who were seen climbing
     // Counting them, then calcuating the percentage of squirrels climbing
     let climbingData = data.filter(object => object.Climbing == 'TRUE');
     let climbingTotal = climbingData.length;
-    let climbingPer = Math.trunc((climbingTotal / total)*100);
+    let climbingPer = Math.round((climbingTotal / total)*100);
 
     // Filtering data to those squirrels who were seen running, chasing or climbing
     // Counting them, then calcuating the percentage of squirrels doing this
     let someActivityData = data.filter(object => object.Climbing == 'TRUE' || object.Chasing == 'TRUE' || object.Running == 'TRUE');
     let someActivity = someActivityData.length;
-    let someActivityPer = Math.trunc((someActivity / total)*100);
+    let someActivityPer = Math.round((someActivity / total)*100);
  
     // Assign values and names to use for the chart
-    let names = ['Some movement', 'Climbing', 'Running', 'Chasing'];
+    let names = ['Movement', 'Climbing', 'Running', 'Chasing'];
     let values = [someActivityPer, climbingPer, runningPer, chasingPer];
   
       // Create the trace
@@ -437,22 +589,22 @@ function buildEating(when){
     // Counting them, then calcuating the percentage of squirrels eating
     let eatingData = data.filter(object => object.Eating == 'TRUE');
     let eatingTotal = eatingData.length;
-    let eatingPer = Math.trunc((eatingTotal / total)*100);
+    let eatingPer = Math.round((eatingTotal / total)*100);
 
     // Filtering data to those squirrels who were seen foraging
     // Counting them, then calcuating the percentage of squirrels foraging
      let foragingData = data.filter(object => object.Foraging == 'TRUE');
      let foragingTotal = foragingData.length;
-     let foragingPer = Math.trunc((foragingTotal / total)*100);
+     let foragingPer = Math.round((foragingTotal / total)*100);
 
     // Filtering data to those squirrels who were seen eating or foraging
     // Counting them, then calcuating the percentage of squirrels doing this
       let someEatingData = data.filter(object => object.Foraging == 'TRUE' || object.Eating == 'TRUE');
       let someEatingTotal = someEatingData.length;
-      let someEatingPer = Math.trunc((someEatingTotal / total)*100);
+      let someEatingPer = Math.round((someEatingTotal / total)*100);
  
     // Assign values and names to use for the chart
-    let names = ['Eating or Foraing', 'Foraging', 'Eating'];
+    let names = ['Foraging or eating', 'Foraging', 'Eating'];
     let values = [someEatingPer, foragingPer, eatingPer];
 
       // Create the trace
@@ -494,28 +646,28 @@ function buildNoises(when){
     // Counting them, then calcuating the percentage of squirrels making this noise
     let kuksData = data.filter(object => object.Kuks == 'TRUE');
     let kuksTotal = kuksData.length;
-    let kuksPer = Math.trunc((kuksTotal / total)*100);
+    let kuksPer = Math.round((kuksTotal / total)*100);
  
     // Filtering data to those squirrels who were making a quaas sound
     // Counting them, then calcuating the percentage of squirrels making this noise
      let quaasData = data.filter(object => object.Quaas == 'TRUE');
      let quaasTotal = quaasData.length;
-     let quaasPer = Math.trunc((quaasTotal / total)*100);
+     let quaasPer = Math.round((quaasTotal / total)*100);
 
      // Filtering data to those squirrels who were making a moaning sound
      // Counting them, then calcuating the percentage of squirrels making this noise
     let moansData = data.filter(object => object.Moans == 'TRUE');
     let moansTotal = moansData.length;
-    let moansPer = Math.trunc((moansTotal / total)*100);
+    let moansPer = Math.round((moansTotal / total)*100);
 
     // Filtering data to those squirrels who were making a sound (kuk or quaas or moaning)
     // Counting them, then calcuating the percentage of squirrels making a noise
     let someSoundData = data.filter(object => object.Kuks == 'TRUE' || object.Quaas == 'TRUE' || object.Moans == 'TRUE');
     let someSoundTotal = someSoundData.length;
-    let someSoundPer = Math.trunc((someSoundTotal / total)*100);
+    let someSoundPer = Math.round((someSoundTotal / total)*100);
  
     // Assign values and names to use for the chart
-    let names = ['Some noise', 'Kuks', 'Quaas', 'Moans'];
+    let names = ['Noises', 'Kuks', 'Quaas', 'Moans'];
     let values = [someSoundPer, kuksPer, quaasPer, moansPer];
       
       // Create the trace
@@ -549,7 +701,7 @@ function init(){
   // Selecting the drop down component
   let selector = d3.select("#selDataset");
   // Reading the url
-  d3.json(timeSightingURL).then((data) => {
+  d3.json(timeURL).then((data) => {
     // Getting the time options from the json file
     let timeOptions = data.time;
     // Adding the time options to the drop down component and assigning their name as the value
