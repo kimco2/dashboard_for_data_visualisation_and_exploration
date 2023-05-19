@@ -23,11 +23,12 @@ Below is an image of the created webpage.  The charts were designed to be intera
 ------------------------------------------------------------------------
 
 ### **Contact:**
-### Email: kymcoleman@gmail.com
+Email: kymcoleman@gmail.com
 
 
 ------------------------------------------------------------------------
 <br/>
+
 Folder structure
 
 -The main folder contains:
