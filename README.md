@@ -1,23 +1,23 @@
 # Where are the squirrels in Central Park NYC?
 
-## **Purpose**
+### **Purpose**
  To understand the type of squirrels in Central Park, where they are located and their behaviour at time of observation.
 
- ## **Overview**
+ ### **Overview**
 This was a full stack development, using data from a csv file, that was cleaned in python, then loaded into MongoDB.  MongoDB was connected to a flask app, with javascript referencing the data to display on the web page via html and css.  
 
 The data used for this came from the 2018 Central Park Squirrel Census. 
 https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw
 
  
- ## **Web page**
+### **Web page**
 Below is an image of the created webpage.  The charts were designed to be interactive for users, you can:
     - Select different layers on the heat map.
     - Click on and off the bars on the radial charts
     - Select a time to display the data on squirrel activity
 ![squirrels_webpage](squirrels_webpage.jpg) 
 
-## **Report**
+### **Report**
  - A written report can be found in the file called **Squirrels_NYC_report.pdf**
 
 ------------------------------------------------------------------------
