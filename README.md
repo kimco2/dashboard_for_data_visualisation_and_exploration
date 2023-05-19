@@ -1,6 +1,25 @@
-# Project_3-Squirrel_Census
+# NYC Squirrel Census 2018
 
-## Hi, welcome to Project 3 on the Squirrels in Central Park NYC.
+### Purpose
+ - To understand the type of squirrels in Central Park, where they are located, and their behaviour at time of observation.
+
+### Data source
+ - 2018 Central Park Squirrel Census. 
+https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw
+
+### Overview
+- This was a full stack dvelopment, using data from a csv file, that was cleaned in python, then loaded into MongoDB.  MongoDB was then connected to a flask app, with javascript referencing the data to display it on a webpage via html and css.
+ 
+- Here is an image of the webpage created.
+
+![squirrels] (Squirrel_webpage.png) 
+![squirrels] (squirrels_webpage.jpg) 
+
+ ### Final visisulation
+
+------------------------------------------------------------------------
+
+Folder structure
 
 -The main folder contains:
 - **squirrel_setup.ipynb** - code for setting the data up in mongodb and includes data cleaning
