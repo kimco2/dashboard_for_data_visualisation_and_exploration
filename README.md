@@ -21,13 +21,13 @@ Below is an image of the created webpage.  The charts were designed to be intera
 ### **Report**
  - A written report can be found in the file called **Squirrels_NYC_report.pdf**
 
-------------------------------------------------------------------------
+---
 
 ### **Contact:**
 Email: kymcoleman@gmail.com
 
 
-------------------------------------------------------------------------
+---
 <br/>
 
 Folder structure
