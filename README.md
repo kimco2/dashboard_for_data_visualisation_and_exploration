@@ -30,7 +30,7 @@ Email: kymcoleman@gmail.com
 ------------------------------------------------------------------------
 <br/>
 
-<font color="slate"> Folder structure
+Folder structure
 
 -The main folder contains:
 - **squirrel_setup.ipynb** - code for setting the data up in mongodb and includes data cleaning
@@ -42,4 +42,4 @@ Email: kymcoleman@gmail.com
 -The folder called **static** contains:
 - **css / style.css** - the style for the online dashboard
 - **js / logic.js** - the js code for the online dashboard
-- **js / leaflet-heat.js** - code required for the heatmaps used within the dashboard.</font>
+- **js / leaflet-heat.js** - code required for the heatmaps used within the dashboard.
