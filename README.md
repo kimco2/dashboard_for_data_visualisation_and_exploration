@@ -12,9 +12,10 @@ https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squi
  
 ### **Web page**
 Below is an image of the created webpage.  The charts were designed to be interactive for users, you can:
-    - Select different layers on the heat map.
-    - Click on and off the bars on the radial charts
-    - Select a time to display the data on squirrel activity
+- Select different layers on the heat map.
+- Click on and off the bars on the radial charts
+-  Select a time to display the data on squirrel activity
+
 ![squirrels_webpage](squirrels_webpage.jpg) 
 
 ### **Report**
@@ -29,7 +30,7 @@ Email: kymcoleman@gmail.com
 ------------------------------------------------------------------------
 <br/>
 
-Folder structure
+<font color="slate"> Folder structure
 
 -The main folder contains:
 - **squirrel_setup.ipynb** - code for setting the data up in mongodb and includes data cleaning
@@ -41,5 +42,4 @@ Folder structure
 -The folder called **static** contains:
 - **css / style.css** - the style for the online dashboard
 - **js / logic.js** - the js code for the online dashboard
-- **js / leaflet-heat.js** - code required for the heatmaps used within the dashboard.
-
+- **js / leaflet-heat.js** - code required for the heatmaps used within the dashboard.</font>
