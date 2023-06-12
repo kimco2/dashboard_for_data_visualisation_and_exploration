@@ -18,6 +18,7 @@ Additional detail on each stage is provided below.
 ---
 ### **Stage 1 - Create a MongoDB database and loaded the squirrels census data into it**
 - A database was set up in MongoDBCompass, with the dataset imported with the code `mongoimport --type csv -d squirrels_db -c squirrels --headerline  --drop 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv`
+
 - Total number of documents loaded
 ![documents](squirrels_db_collection_number_documents.png)
 <!-- - Viewing a document in the collection
