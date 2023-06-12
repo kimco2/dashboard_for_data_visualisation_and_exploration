@@ -20,6 +20,7 @@ Additional detail on each stage is provided below.
 - A database was set up in MongoDBCompass, with the dataset imported with the code `mongoimport --type csv -d squirrels_db -c squirrels --headerline  --drop 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv`
 
 - Total number of documents loaded
+
 ![documents](squirrels_db_collection_number_documents.png)
 <!-- - Viewing a document in the collection
 ![document_view](squirrels_db_collection.png) -->
